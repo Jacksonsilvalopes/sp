@@ -3,14 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/app/User.php</file>
-            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/routes/web.php</file>
+            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/admin/usuarios/_form.blade.php</file>
             <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/admin/usuarios/index.blade.php</file>
-            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/admin/modelo/index.blade.php</file>
-            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/app/Contrato.php</file>
+            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/admin/usuarios/adicionar.blade.php</file>
             <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/app/Http/Controllers/Admin/UsuariosController.php</file>
-            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/admin/index.blade.php</file>
-            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/componentes/rastro.blade.php</file>
+            <file>file:/C:/Users/jacks/Desktop/ProjetoGc/20190822/gc22/resources/views/admin/usuarios/editar.blade.php</file>
         </group>
     </open-files>
 </project-private>
