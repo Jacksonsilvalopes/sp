@@ -76,9 +76,28 @@ class ContratosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+      public function show($id) {
+
+        $contrato = $this->model->findRelation('contratos', 'id_contrato', $id);
+        $list = $this->model->findRelation('severidades', 'id_contrato', $id);
+
+        $columns = ['id_prestador' => 'id_prestador', 'rg' => 'rg'];
+        $registro = $this->model->extractValues($contrato, $columns);
+
+        $id_prestador = $registro[0];
+        $rg = $registro[1];
+
+        $fornecedor = $this->model->findRelation('prestador', 'id_prestador', $id_prestador);
+
+        $columns = ['nome' => 'nome'];
+        $registro1 = $this->model->extractValues($fornecedor, $columns);
+        $nomeFornecedor = $registro1[0];
+      
+
+        $columnList = ['id_severidade' => 'Id', 'prazo_atend' => 'Atendimento', 'prazo_solu' => 'Solução', 'descricao' => 'Descrição', 'multa' => 'Multa', 'item' => 'Item'];
+
+
+        return view('admin.contratos.index', compact('contrato', 'list', 'fornecedor', 'columnList', 'id', 'rg','nomeFornecedor'));
     }
 
     /**
