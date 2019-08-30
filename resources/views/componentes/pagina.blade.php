@@ -1,6 +1,6 @@
 
-<div class="container ">
-    <div class="row " style="margin: auto;" >
+<div class="container{{$fluid}} ">
+    <div class="row "  >
         <div class="col s{{$col}}" >
             @if (session('status'))
             <div class="alert alert-{{$aviso}}" role="alert">

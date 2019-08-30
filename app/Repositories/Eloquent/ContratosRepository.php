@@ -63,10 +63,14 @@ class ContratosRepository extends AbstractRepository  implements ContratosReposi
 
     public function findRelation($tabela, $nome, $id) {
 
-        return $relation = DB::table($tabela)->where($nome, $id)->get();
+      return $relation = DB::table($tabela)->where($nome, $id)->get();
     }
 
 //minha função generica 
+    
+  //Esta função  recebe um objeto com varios atributos e a coluna que desejo extrair
+  //no primeiro  foreach extraio o valores do array
+  //no segundo foreach extraio somente as colunas que desejo
     public function extractValues($key, $columns) {
         foreach ($key as $value) {
 

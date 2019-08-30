@@ -52,10 +52,10 @@ Route::get('/teste1', function () {
 */
 Route::get('/teste1', function () {
   
-    $user = App\User::find(570);
+ //   $user = App\User::find(570);
     
    // dd($user->name);
-    dd($user->meusContratos);
+   // dd($user->meusContratos);
     
    
 });

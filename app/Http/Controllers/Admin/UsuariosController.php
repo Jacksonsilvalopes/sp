@@ -38,8 +38,8 @@ class UsuariosController extends Controller {
 
         $routname = $this->routname;
         $col = 12;
-
-        return view('admin.usuarios.index', compact('list', 'pesquisa', 'routname', 'col', 'columnList', 'caminhos'));
+        $fluid = " ";
+        return view('admin.usuarios.index', compact('list', 'pesquisa', 'routname', 'col','fluid', 'columnList', 'caminhos'));
     }
 
     public function create() {

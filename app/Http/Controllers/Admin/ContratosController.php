@@ -6,24 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\ContratosRepositoryInterface;
 
-class ContratosController extends Controller
-{
-      private $routname = 'contratos';
+class ContratosController extends Controller {
+
+    private $routname = 'contratos';
 
     public function __construct(ContratosRepositoryInterface $model) {
 
         $this->model = $model;
     }
 
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         $caminhos = [
-            ['url' => '/admin', 'titulo' => 'Admin'],
-            ['url' => '', 'titulo' => 'Contratos'],
+                ['url' => '/admin', 'titulo' => 'Admin'],
+                ['url' => '', 'titulo' => 'Contratos'],
         ];
 
 
-        $columnList = ['rg' => 'RG','n_siscor' => 'SISCOR INICIAL', 'valor_atual' => 'VALOR ATUAL'];
+        $columnList = ['rg' => 'RG', 'n_siscor' => 'SISCOR INICIAL', 'valor_atual' => 'VALOR ATUAL'];
 
         $pesquisa = "";
 
@@ -31,7 +30,7 @@ class ContratosController extends Controller
         if (isset($request->pesquisa)) {
 
             $pesquisa = $request->pesquisa;
-           
+
             $list = $this->model->findWhereLike(['rg', 'n_siscor'], $pesquisa, 'rg', 'DESC');
         } else {
             $list = $this->model->Paginate(7);
@@ -39,8 +38,9 @@ class ContratosController extends Controller
 
         $routname = $this->routname;
         $col = 12;
+        $fluid = "";
 
-        return view('admin.contratos.index', compact('list', 'pesquisa', 'routname', 'col', 'columnList', 'caminhos'));
+        return view('admin.contratos.index', compact('list', 'pesquisa', 'routname', 'col','fluid', 'columnList', 'caminhos'));
     }
 
     /**
@@ -48,16 +48,13 @@ class ContratosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function resumo($id)
-    {
-    echo 'oi';
+    public function resumo($id) {
+        echo 'oi';
     }
-    
-    public function create()
-    {
+
+    public function create() {
         //
     }
-   
 
     /**
      * Store a newly created resource in storage.
@@ -65,8 +62,7 @@ class ContratosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -76,28 +72,37 @@ class ContratosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-      public function show($id) {
+    public function show($id) {
 
-        $contrato = $this->model->findRelation('contratos', 'id_contrato', $id);
+        $contratos = $this->model->all();
+      
+
+        $columns1 = ['rg' => 'rg'];
+        $registro10 = $this->model->extractValues($contratos, $columns1);
+        dd($registro10);
+        //tras dados do contrato (metodo find) 
+        $contrato = $this->model->findRelation('contrato', 'id_contrato', $id);
+
+        //   dd($contrato);
+        //tras tabela severidade atraves do id do contrato (relação 1 para muitos)
         $list = $this->model->findRelation('severidades', 'id_contrato', $id);
 
         $columns = ['id_prestador' => 'id_prestador', 'rg' => 'rg'];
         $registro = $this->model->extractValues($contrato, $columns);
 
+
         $id_prestador = $registro[0];
         $rg = $registro[1];
-
         $fornecedor = $this->model->findRelation('prestador', 'id_prestador', $id_prestador);
 
-        $columns = ['nome' => 'nome'];
+
+        $columns = ['nome' => 'nome', 'cnpj' => 'cnpj'];
         $registro1 = $this->model->extractValues($fornecedor, $columns);
+        // dd($registro1);
         $nomeFornecedor = $registro1[0];
-      
 
         $columnList = ['id_severidade' => 'Id', 'prazo_atend' => 'Atendimento', 'prazo_solu' => 'Solução', 'descricao' => 'Descrição', 'multa' => 'Multa', 'item' => 'Item'];
-
-
-        return view('admin.contratos.index', compact('contrato', 'list', 'fornecedor', 'columnList', 'id', 'rg','nomeFornecedor'));
+        return view('admin.contratos.index', compact('contrato', 'list', 'fornecedor', 'columnList', 'id', 'rg', 'nomeFornecedor'));
     }
 
     /**
@@ -106,8 +111,7 @@ class ContratosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -118,8 +122,7 @@ class ContratosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -129,8 +132,8 @@ class ContratosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

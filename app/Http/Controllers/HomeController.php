@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contrato;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('auth');
     }
 
@@ -22,20 +21,39 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         
-        $list=Contrato::all();
-   
-        dd($list);
-     
-    $contrato = App\Contrato::find(217);
-    dd($contrato->responsaveis);
+         $caminhos = [
+            ['url' => '/', 'titulo' => 'Home'],
+           
+        ];
+
+
+        $list = Contrato::all();
+
+
+
+        $columns = ['id_contrato' => 'id_contrato'];
+        $id_contratos = Contrato::extractValues($list, $columns);
+
+      
+
+        $listsecd = Contrato::extractValuesResponse($id_contratos);
         
-        
-    // $listsecd;
-        
-         return view('home',compact('list','listsecd')); 
        
+
+        /* foreach ($listsecd as $key => $value) {
+          foreach ($value as $key1 => $value1) {
+          echo $value1->responsabilidade;
+          }
+
+          }
+         */
+       $routname = 'home';
+        $col = 12;
+        $fluid = "";
+
+        return view('home', compact('list', 'listsecd','routname', 'col', 'fluid', 'caminhos'));
     }
+
 }

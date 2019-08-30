@@ -3,7 +3,7 @@
 
 @section('content')
 
-@pagina(['col'=>$col, 'aviso'=>'success'])
+@pagina(['col'=>$col,'fluid'=>$fluid,'aviso'=>'success'])
 @rastro(['routname'=>$routname,'caminhos'=>$caminhos ])
 @endrastro
 @formulario(['col'=>$col,'routname'=>$routname,'pesquisa'=>$pesquisa ])

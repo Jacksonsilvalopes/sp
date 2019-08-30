@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider {
         Blade::component('componentes.rastro', 'rastro');
         Blade::component('componentes.tabela', 'tabela');
         Blade::component('componentes.listagem', 'listagem');
+        Blade::component('componentes.listagemp', 'listagemp');
         Blade::component('componentes.pagina', 'pagina');
         Blade::component('componentes.admin', 'admin');
     }

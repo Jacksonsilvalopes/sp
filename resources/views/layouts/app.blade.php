@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -168,17 +167,13 @@
                                    belowOrigin: true,
                                    alignment: 'left'
                                });
-
                                // JAVASCRIPT START HERE //
                                $('.button-collapse').sideNav();
-
                                // JAVASCRIPT CAROSEUL HERE //
                                //  $('.carousel-slider').carousel({padding: -250});
                                //   $('.carousel').carousel();
-
                                // $('.carousel-slider').carousel({fullWidth: true});
                                $('.carousel').carousel({
-
                                });
                                autoplay();
                                function autoplay() {
@@ -186,22 +181,12 @@
                                    setTimeout(autoplay, 6500);
                                }
                                ;
-
                                $('.modal').modal({
-
                                    dismissible: false,
                                    inDuration: 1000,
                                    outDuration: 1000,
-
                                });
-
                            });
-
         </script>
     </body>
 </html>
-
-
-
-
-
