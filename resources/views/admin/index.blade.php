@@ -17,7 +17,18 @@
               <p>Inclusão/ Atualização/ Exclusão de Contratos no Sistema</p>
             </div>
             <div class="card-action">
-              <a href="">Visualizar</a>
+              <a href="{{route('contratos.index')}}">Visualizar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="card orange darken-2">
+            <div class="card-content white-text">
+              <span class="card-title">Contrato</span>
+              <p>Resumo</p>
+            </div>
+            <div class="card-action">
+              <a href="{{route('contratos.resumo', 2)}}">Visualizar</a>
             </div>
           </div>
         </div>

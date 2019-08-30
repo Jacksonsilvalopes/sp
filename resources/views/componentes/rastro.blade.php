@@ -1,3 +1,4 @@
+&nbsp;
 <nav>
     <div class="nav-wrapper {{config('app.corSite')}}">
         <div class="col s12">

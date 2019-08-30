@@ -4,26 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\Contracts\UsuariosRepositoryInterface;
+use App\Repositories\Contracts\ContratosRepositoryInterface;
 
-class UsuariosController extends Controller {
+class ContratosController extends Controller
+{
+      private $routname = 'contratos';
 
-    private $routname = 'usuarios';
-
-    public function __construct(UsuariosRepositoryInterface $model) {
+    public function __construct(ContratosRepositoryInterface $model) {
 
         $this->model = $model;
     }
 
-    public function index(Request $request) {
-
+    public function index(Request $request)
+    {
         $caminhos = [
             ['url' => '/admin', 'titulo' => 'Admin'],
-            ['url' => '', 'titulo' => 'Usuários'],
+            ['url' => '', 'titulo' => 'Contratos'],
         ];
 
 
-        $columnList = ['matricula' => 'Matricula', 'name' => 'Nome', 'lotacao' => 'Alocação', 'email' => 'Email', 'telefone' => 'Telefone'];
+        $columnList = ['rg' => 'RG','n_siscor' => 'SISCOR INICIAL', 'valor_atual' => 'VALOR ATUAL'];
 
         $pesquisa = "";
 
@@ -31,7 +31,8 @@ class UsuariosController extends Controller {
         if (isset($request->pesquisa)) {
 
             $pesquisa = $request->pesquisa;
-            $list = $this->model->findWhereLike(['name', 'email', 'lotacao', 'telefone'], $pesquisa, 'id', 'DESC');
+           
+            $list = $this->model->findWhereLike(['rg', 'n_siscor'], $pesquisa, 'rg', 'DESC');
         } else {
             $list = $this->model->Paginate(7);
         }
@@ -39,23 +40,24 @@ class UsuariosController extends Controller {
         $routname = $this->routname;
         $col = 12;
 
-        return view('admin.usuarios.index', compact('list', 'pesquisa', 'routname', 'col', 'columnList', 'caminhos'));
+        return view('admin.contratos.index', compact('list', 'pesquisa', 'routname', 'col', 'columnList', 'caminhos'));
     }
 
-    public function create() {
-        $caminhos = [
-            ['url' => '/admin', 'titulo' => 'Admin'],
-            ['url' => '/admin/usuarios', 'titulo' => 'Usuários'],
-            ['url' => '', 'titulo' => 'Adicionar Usuários'],
-        ];
-
-
-        $routname = $this->routname;
-        $col = 12;
-
-
-        return view('admin.usuarios.adicionar', compact( 'routname','col','caminhos'));
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function resumo($id)
+    {
+    echo 'oi';
     }
+    
+    public function create()
+    {
+        //
+    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -63,7 +65,8 @@ class UsuariosController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -73,7 +76,8 @@ class UsuariosController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         //
     }
 
@@ -83,7 +87,8 @@ class UsuariosController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         //
     }
 
@@ -94,7 +99,8 @@ class UsuariosController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         //
     }
 
@@ -104,8 +110,8 @@ class UsuariosController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
-
 }

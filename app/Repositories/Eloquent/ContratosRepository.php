@@ -6,7 +6,7 @@ use App\Repositories\Contracts\ContratosRepositoryInterface;
 use App\Contrato;
 use Illuminate\Support\Facades\DB;
 
-class ContratosRepository implements ContratosRepositoryInterface {
+class ContratosRepository extends AbstractRepository  implements ContratosRepositoryInterface {
 
     protected $model = Contrato::class;
 
@@ -43,15 +43,22 @@ class ContratosRepository implements ContratosRepositoryInterface {
         return $query->orderBy($coluna_ordenar, $ordem)->get();
     }
 
-    public function findId($id) {
+    public function resumoContrato( ) {
 
         /*  $registro = DB::table('contratos')
           ->join('severidades', 'severidades.id_contrato', '=', 'contratos.id_contrato')
           ->select('contratos.*','severidades.*')//seleção doque desejo
           ->where('contratos.id_contrato', $id)
           ->get(); */
+        
+        
+         $registro = DB::table('contratos')
+          ->join('local', 'local.id_contrato', '=', 'contratos.id_contrato')
+          ->join('responsaveis', 'responsaveis.id_contrato', '=', 'contratos.id_contrato')
+          ->select('contratos.*','local.sigla','responsaveis.responsabilidade' )        
+          ->get(); 
 
-        return $registro = $this->model::find($id);
+        return $registro;
     }
 
     public function findRelation($tabela, $nome, $id) {

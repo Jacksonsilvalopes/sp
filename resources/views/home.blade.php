@@ -1,44 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<body style="background-color: grey;">
-<div class="container-fluid">
-<div class="row">
-    <div class="col m6 s12">
-
-        <div class="carousel" style="margin-left: -50px;" >       
-    <div class="carousel-item" href="#one!" >
-       
-        <div id="columnchart_values"  ></div>
-    </div>>
-    <div class="carousel-item"   href="#two!">
-
-        <div  id="columnchart_material" ></div>
-
-    </div>
-    <div class="carousel-item"  href="#three!">
-
-        <div id="columnchart_canes" ></div>
-    </div>      
-    <div class="carousel-item"  href="#for!">
-
-        <div id="columnchart_canes1" ></div>
-    </div>      
-    <div class="carousel-item"  href="#five!">
-
-        <div id="columnchart_canes2" ></div>
-    </div>      
-    <div class="carousel-item"  href="#six!">           
-        <div id="columnchart_canes3" ></div>
-    </div>      
-
-</div>
-</div>
-    <div class="m6 s12">
-        
-    </div>
-
-</div>
-</div>
-</body>
+<table>
+    <thead>
+        <tr>
+            <th>RG</th>
+            <th>STATUS</th>
+            <th>TECNICO ADMINISTRATIVO</th>
+            <th>FISCAL TECNICO</th>
+            <th>VALOR DO CONTRATO</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+       @foreach($list as  $lists)
+        <tr>						
+            <td>{{$lists->rg}}</td>
+            <td>{{$lists->status}}</td>
+            <td>
+               @foreach($listsecd as $listsec)  
+                @if($listsec->responsabilidade == 3)
+                
+                {{$listsec->nome}}
+                
+                @endif
+                
+                @endforeach 
+            </td>
+            <td>
+               @foreach($listsecd as $listsec)  
+                @if($listsec->responsabilidade == 4)
+                
+               {{ $listsec->nome}}
+                
+                @endif
+                
+                @endforeach         
+                
+            </td>
+            <td>{{ $lists->valor_atual}}</td>
+           
+        </tr>
+         @endforeach 
+    </tbody>
+</table>
 @endsection

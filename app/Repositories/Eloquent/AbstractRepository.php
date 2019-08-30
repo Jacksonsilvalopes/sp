@@ -28,7 +28,7 @@ abstract class AbstractRepository {
         return  $this->model->paginate($paginate);
     }
     
-     public function findWhereLike(array $colunas_pesquisar, string $valor_pesquisa, string $coluna_ordenar ,string $ordem = 'ASC')
+   public function findWhereLike(array $colunas_pesquisar, string $valor_pesquisa, string $coluna_ordenar ,string $ordem = 'ASC')
     {
         $query = $this->model;
         
@@ -40,7 +40,7 @@ abstract class AbstractRepository {
         
         return $query->orderBy($coluna_ordenar,$ordem)->get();
     }
-    
+   
     
     
     

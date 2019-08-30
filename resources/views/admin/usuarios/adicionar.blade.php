@@ -1,14 +1,18 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container" >
-    <h3>Adicionar Usuarios</h3>
+@pagina(['col'=>$col, 'aviso'=>'success'])
+
+@rastro(['caminhos'=>$caminhos ])
+@endrastro
+
     <form class="needs-validation"  action="" method="post" >
         {{csrf_field()}}
         @include('admin.usuarios._form')
-        <button style="margin-left: 16px;" class="btn btn-primary ">Salvar</button>
-
+        <button    class="waves-effect waves-light btn left ">Salvar</button>
+      
     </form>
-</div>
+    
+@endpagina
 
 @endsection

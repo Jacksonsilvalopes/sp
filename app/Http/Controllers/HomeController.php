@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Contrato;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $list=Contrato::all();
+   
+        dd($list);
+     
+    $contrato = App\Contrato::find(217);
+    dd($contrato->responsaveis);
+        
+        
+    // $listsecd;
+        
+         return view('home',compact('list','listsecd')); 
+       
     }
 }
